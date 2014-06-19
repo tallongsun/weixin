@@ -1,2 +1,2 @@
-*.class
+WebRoot/WEB-INF/classes/
 logs/
