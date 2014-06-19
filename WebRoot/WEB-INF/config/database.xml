@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database  db_ip="wordpress-db.cjdr5s24owqm.ap-southeast-1.rds.amazonaws.com" 
+	db_port="3306"  
+	db_username="root" 
+	db_password="rootpass" 
+	db_name="chat" />

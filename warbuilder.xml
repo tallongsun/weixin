@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="weixin" basedir="." default="buildwar">
+	
+	<!--打包整个war-->
+	<target name="buildwar">
+		<war basedir="WebRoot" destfile="youyou.war" webxml="WebRoot/WEB-INF/web.xml">
+			<exclude name="WEB-INF/**" />
+			<webinf dir="WebRoot/WEB-INF/" >
+				<include name="lib/*.jar" />
+			</webinf>
+			<webinf dir="WebRoot/WEB-INF" >
+				<include name="**/*.class" />
+			</webinf>
+			<webinf dir="WebRoot/WEB-INF">
+				<include name="**/*.properties" />
+			</webinf>
+			<webinf dir="WebRoot/WEB-INF">
+				<include name="config/*.xml" />
+			</webinf>
+		</war>
+	</target>
+	
+</project>
