@@ -1,7 +1,5 @@
 package com.weixin.chat;
 
-import java.io.InputStream;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,8 +15,7 @@ public class ChickenChatService {
         		HttpUtil.urlEncode(req,"UTF-8"));
         log.debug(url);
         
-        InputStream is = HttpUtil.doGet(url);
-        String jsonStr = HttpUtil.readStream(is,"UTF-8");
+        String jsonStr = HttpUtil.doGet(url,"UTF-8");
         log.debug(jsonStr);
         
 		JSONObject jso = JSONObject.parseObject(jsonStr);

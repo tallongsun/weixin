@@ -1,6 +1,5 @@
 package com.weixin.music;
 
-import java.io.InputStream;
 import java.util.List;
 
 import org.dom4j.Document;
@@ -26,10 +25,8 @@ public class BaiduMusicService {
         
         log.debug("music url:"+requestUrl);
   
-        // 查询并获取返回结果  
-        InputStream inputStream = HttpUtil.doGet(requestUrl);  
-        // 从返回结果中解析出Music  
-        Music music = parseMusic(inputStream);  
+        // 解析Music  
+        Music music = parseMusic(requestUrl);  
   
         // 如果music不为null，设置标题和描述  
         if (null != music) {  
@@ -45,11 +42,11 @@ public class BaiduMusicService {
 	
 
 	@SuppressWarnings("unchecked")
-	private static Music parseMusic(InputStream inputStream) {
+	private static Music parseMusic(String reqUrl) {
 		Music music = null;
 		try {
 			// 使用dom4j解析xml字符串
-			String xmlStr = HttpUtil.readStream(inputStream,"UTF-8");
+			String xmlStr = HttpUtil.doGet(reqUrl,"UTF-8");
 			log.debug("encode:"+System.getProperty("file.encoding")+",xmlStr:"+xmlStr);
 			
 			Document document = DocumentHelper.parseText(xmlStr);

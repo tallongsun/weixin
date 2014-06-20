@@ -20,6 +20,7 @@ import com.thoughtworks.xstream.io.xml.PrettyPrintWriter;
 import com.thoughtworks.xstream.io.xml.XppDriver;
 import com.weixin.msg.BaseResMessage;
 import com.weixin.msg.res.TextResMessage;
+import com.weixin.msg.res.NewsResMessage.Article;
 
 public class MessageUtil {
 	
@@ -78,6 +79,9 @@ public class MessageUtil {
     
     public static String messageToXml(BaseResMessage msg) {  
         xstream.alias("xml", msg.getClass());  
+        if(msg.getMsgType().equals("news")){
+        	xstream.alias("item", new Article().getClass());
+        }
         return xstream.toXML(msg);  
     } 
     

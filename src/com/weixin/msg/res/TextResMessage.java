@@ -20,5 +20,5 @@ public class TextResMessage extends BaseResMessage{
 	public void setContent(String content) {
 		this.Content = content;
 	}
-	
+
 }

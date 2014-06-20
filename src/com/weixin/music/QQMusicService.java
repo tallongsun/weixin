@@ -1,7 +1,5 @@
 package com.weixin.music;
 
-import java.io.InputStream;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,10 +22,8 @@ public class QQMusicService {
         
         log.debug("music url:"+requestUrl);
   
-        // 查询并获取返回结果  
-        InputStream inputStream = HttpUtil.doGet(requestUrl);  
-        // 从返回结果中解析出Music  
-        Music music = parseMusic(inputStream);  
+        // 解析Music  
+        Music music = parseMusic(requestUrl);  
   
         // 如果music不为null，设置标题和描述  
         if (null != music) {  
@@ -42,10 +38,10 @@ public class QQMusicService {
     } 
 	
 
-	private static Music parseMusic(InputStream inputStream) {
+	private static Music parseMusic(String reqUrl) {
 		Music music = null;
 		try {
-			String jsonStr = HttpUtil.readStream(inputStream,"GB2312");
+			String jsonStr = HttpUtil.doGet(reqUrl,"GB2312");
 			jsonStr = jsonStr.substring(jsonStr.indexOf('(')+1,jsonStr.lastIndexOf(')'));
 			log.debug("encode:"+System.getProperty("file.encoding")+",jsonStr:"+jsonStr);
 			

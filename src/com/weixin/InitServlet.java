@@ -11,15 +11,16 @@ import com.weixin.util.DBUtil;
 public class InitServlet extends HttpServlet {
 	private static final long serialVersionUID = -6014103275870506517L;
 
-
+	public static String WEB_ROOT_PATH = "";
+	
+	
 	@Override
 	public void init() throws ServletException{
-		DBUtil.init(getWebInfPath());
-		ChatService.init(getWebInfPath());
+		WEB_ROOT_PATH = getServletContext().getRealPath("/");
+		
+		String webInfPath = WEB_ROOT_PATH + "WEB-INF"+File.separator;
+		DBUtil.init(webInfPath);
+		ChatService.init(webInfPath);
 	}
 	
-	
-	private String getWebInfPath(){
-		return getServletContext().getRealPath("/")+"WEB-INF"+File.separator;
-	}
 }

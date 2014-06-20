@@ -6,10 +6,6 @@ CREATE DATABASE `chat` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `chat`;
 
 drop table if EXISTS `knowledge`;
-drop table if EXISTS `knowledge_sub`;
-drop table if EXISTS `joke`;
-drop table if EXISTS `chat_log`;
-
 create table `knowledge`(
 	`id` int not null primary key comment '主键标识',
 	`question` varchar(2000) not null comment '问题',
@@ -35,6 +31,7 @@ insert into knowledge values(16 , '什么是幸福', '幸福是一种感觉。',
 insert into knowledge values(17 , '你是机器人吗', '是啊，很智能的那种哦~', 1);
 insert into knowledge values(18 , '唉,哎', '怎么了，叹什么气呢？', 1);
 
+drop table if EXISTS `knowledge_sub`;
 create table `knowledge_sub`(
 	`id` int not null auto_increment primary key comment '主键标识',
 	`pid` int not null comment '与knowledge表中的id相对应',
@@ -54,6 +51,7 @@ insert into knowledge_sub(pid, answer) values(3, '因为我是聪明的机器人
 insert into knowledge_sub(pid, answer) values(3, '这是天生的，没办法，哈哈。');
 insert into knowledge_sub(pid, answer) values(3, '我会努力变得更加聪明的');
 
+drop table if EXISTS `joke`;
 create table `joke`(
 	`joke_id` int(8) primary key not null auto_increment comment '笑话id',
 	`joke_content` text(8000) comment '笑话内容'
@@ -64,6 +62,7 @@ insert into joke(joke_content) values('课堂上老师点名：“刘华!” 结
 insert into joke(joke_content) values('昨天被公司美女同事莫名的亲了一口，心里各种的爽。后来才知道人家玩真心话大冒险，是叫亲一个公司最丑的，最丑的！');
 insert into joke(joke_content) values('有个人第一次在集市上卖冰棍，不好意思叫卖，旁边有一个人正高声喊：“卖冰棍”，他只好喊道：“我也是”。');
 
+drop table if EXISTS `chat_log`;
 create table `chat_log`(
 	`id` int not null auto_increment primary key comment '主键标识',
 	`open_id` varchar(30) not null comment '用户的OpenID',
@@ -72,3 +71,34 @@ create table `chat_log`(
 	`resp_msg` varchar(2000) not null comment '公众账号回复的消息',
 	`chat_category` int comment '聊天的类别（0:未知 1:普通对话 2:笑话 3:上下文）'
 ) comment='聊天记录表';
+
+drop table if EXISTS `user_location`;
+create table `user_location`(
+	`id` int not null auto_increment primary key comment '',
+	`open_id` varchar(30) not null comment '',
+	`lng` varchar(20) not null comment '',
+	`lat` varchar(20) not null comment '',
+	`bd09_lng` varchar(20) not null comment '',
+	`bd09_lat` varchar(20) not null comment ''
+) comment='';
+
+drop table if EXISTS `game`;
+create table game(
+	game_id int not null auto_increment primary key comment '',
+	open_id varchar(50) not null comment '',
+	game_answer varchar(4) not null comment '',
+	create_time varchar(20) not null comment '',
+	game_status int not null comment '',
+	finish_time varchar(20) comment ''
+) comment='';
+
+drop table if EXISTS `game_round`;
+create table game_round(
+	id int not null auto_increment primary key comment '',
+	game_id int not null comment '',
+	open_id varchar(50) not null comment '',
+	guess_number varchar(4) not null comment '',
+	guess_time varchar(20) not null comment '',
+	guess_result varchar(4) not null comment '',
+	FOREIGN KEY(game_id) REFERENCES game(game_id) on delete cascade on update cascade
+) comment='';
