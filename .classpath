@@ -16,5 +16,9 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/lucene-queryparser-4.6.0.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/mysql-connector-java-5.1.6-bin.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jaxen-1.1.1.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jedis-2.2.0-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/libthrift.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-pool-1.5.2.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-lang-2.6.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>

@@ -8,20 +8,22 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.weixin.chat.ChatLogic;
-import com.weixin.face.FaceLogic;
-import com.weixin.game.GameLogic;
-import com.weixin.location.LocationLogic;
+import com.weixin.logic.chat.ChatLogic;
+import com.weixin.logic.face.FaceLogic;
+import com.weixin.logic.game.GameLogic;
+import com.weixin.logic.location.LocationLogic;
+import com.weixin.logic.music.MusicLogic;
+import com.weixin.logic.weather.WeatherLogic;
 import com.weixin.msg.BaseReqMessage;
 import com.weixin.msg.BaseResMessage;
 import com.weixin.msg.req.EventReqMessage;
 import com.weixin.msg.req.ImageReqMessage;
 import com.weixin.msg.req.LocationReqMessage;
 import com.weixin.msg.req.TextReqMessage;
+import com.weixin.msg.req.VoiceReqMessage;
 import com.weixin.msg.req.event.Event;
 import com.weixin.msg.req.event.EventFactory;
 import com.weixin.msg.res.TextResMessage;
-import com.weixin.music.MusicLogic;
 import com.weixin.util.MessageUtil;
 import com.weixin.util.NumberUtil;
 
@@ -59,6 +61,9 @@ public class RequestHandler {
                 } else if (reqMsg.getMsgType().equals("location")){ // 位置消息
                 	LocationReqMessage locReqMsg = (LocationReqMessage)reqMsg;
                 	resMsg = LocationLogic.process(locReqMsg);
+                } else if (reqMsg.getMsgType().equals("voice")){ // 语音消息
+                	VoiceReqMessage voiceReqMsg = (VoiceReqMessage)reqMsg;
+                	resMsg = WeatherLogic.process(voiceReqMsg);
                 } else if (reqMsg.getMsgType().equals("event")){ //事件
                 	EventReqMessage eventReqMsg = (EventReqMessage)reqMsg;
                 	Event event = eventReqMsg.getEvent();
@@ -101,6 +106,10 @@ public class RequestHandler {
 			String scale = requestMap.get("Scale"); 
 			String label = requestMap.get("Label"); 
 			return new LocationReqMessage(msgType, toUserName, fromUserName, createTime, msgId, x, y, scale, label);
+		}else if("voice".equals(msgType)){
+			String mediaId = requestMap.get("MediaId");
+			String format = requestMap.get("Format");
+			return new VoiceReqMessage(msgType, toUserName, fromUserName, createTime, msgId, mediaId, format);
 		}else if("event".equals(msgType)){
 			Event event = EventFactory.getEvent(requestMap);
 			if(event!=null){

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cache host="ecache.gzyydf.0001.apse1.cache.amazonaws.com" 
+	port="6379"  
+	timeout="10000" 
+	active="30" 
+	idle="0" />

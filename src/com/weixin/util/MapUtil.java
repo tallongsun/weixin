@@ -10,8 +10,8 @@ import org.dom4j.Element;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.util.Base64;
-import com.weixin.location.Place;
-import com.weixin.location.UserLocation;
+import com.weixin.logic.location.Place;
+import com.weixin.logic.location.UserLocation;
 
 public class MapUtil {
 	public static UserLocation convertCoord(String lng, String lat) {
