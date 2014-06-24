@@ -18,7 +18,8 @@ public class Event {
 		this.type = type;
 	}
 	
-	public BaseResMessage exec(){
+
+	public BaseResMessage exec(String openId){
 		if(type.equals("subscribe")){
 			return new TextResMessage("您好，欢迎关注！");
 		}

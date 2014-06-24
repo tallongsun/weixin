@@ -36,7 +36,7 @@ public class MusicLogic {
 	}
 	
 
-    private  static String getUsage() {  
+    public  static String getUsage() {  
         StringBuffer buffer = new StringBuffer();  
         buffer.append("歌曲点播操作指南").append("\n\n");  
         buffer.append("回复：歌曲+歌名").append("\n");  

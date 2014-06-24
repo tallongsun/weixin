@@ -8,6 +8,14 @@
 	<servlet>
 		<servlet-name>InitServlet</servlet-name>
 		<servlet-class>com.weixin.InitServlet</servlet-class>
+        <init-param>  
+            <param-name>appid</param-name>  
+            <param-value>wx37f976dad1ea9039</param-value>  
+        </init-param> 
+        <init-param>  
+            <param-name>appsecret</param-name>  
+            <param-value>38cf48c15f84ef6352e42a4669bdbdd0</param-value>  
+        </init-param> 
 		<load-on-startup>0</load-on-startup>
 	</servlet>
 	
@@ -18,6 +26,15 @@
 	<servlet-mapping>
 		<servlet-name>RequestServlet</servlet-name>
 		<url-pattern>/request.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>AdminServlet</servlet-name>
+		<servlet-class>com.weixin.AdminServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AdminServlet</servlet-name>
+		<url-pattern>/admin.do</url-pattern>
 	</servlet-mapping>
 	
   <welcome-file-list>

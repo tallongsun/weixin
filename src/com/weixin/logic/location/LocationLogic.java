@@ -86,7 +86,7 @@ public class LocationLogic {
 		return list;
 	}
 	
-	private static String getUsage() {
+	public static String getUsage() {
 		StringBuffer buffer = new StringBuffer();
 		buffer.append("周边搜索使用说明").append("\n\n");
 		buffer.append("1）发送地理位置").append("\n");

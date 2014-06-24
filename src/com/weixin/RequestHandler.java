@@ -68,7 +68,7 @@ public class RequestHandler {
                 	EventReqMessage eventReqMsg = (EventReqMessage)reqMsg;
                 	Event event = eventReqMsg.getEvent();
                 	if(event!=null){
-                		resMsg = event.exec();
+                		resMsg = event.exec(eventReqMsg.getFromUserName());
                 	}
                 }
                 if(resMsg != null){

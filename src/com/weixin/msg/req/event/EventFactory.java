@@ -7,7 +7,7 @@ public class EventFactory {
 		String type = requestMap.get("Event");
 		if(type.equals("subscribe") || type.equals("unsubscribe")){
 			return new Event(type);
-		}else if(type.equals("CLICK")){
+		}else if(type.equals("CLICK") || type.equals("VIEW")){
 			String key = requestMap.get("EventKey");
 			return new MenuEvent(type,key);
 		}

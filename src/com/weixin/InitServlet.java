@@ -17,8 +17,9 @@ public class InitServlet extends HttpServlet {
 	
 	@Override
 	public void init() throws ServletException{
-		WEB_ROOT_PATH = getServletContext().getRealPath("/");
+        TokenThread.init(getInitParameter("appid"), getInitParameter("appsecret"));
 		
+		WEB_ROOT_PATH = getServletContext().getRealPath("/");
 		String webInfPath = WEB_ROOT_PATH + "WEB-INF"+File.separator;
 		DaoHelper.init(webInfPath);
 		CaoHelper.init(webInfPath);

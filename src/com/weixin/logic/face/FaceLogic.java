@@ -28,6 +28,14 @@ public class FaceLogic {
         return new TextResMessage(result); 
 	}
 	
+	public static String getUsage() {  
+        StringBuffer buffer = new StringBuffer();  
+        buffer.append("人脸检测使用指南").append("\n\n");  
+        buffer.append("发送一张清晰的照片，就能帮你分析出种族、年龄、性别等信息").append("\n");  
+        buffer.append("快来试试你是不是长得太着急");  
+        return buffer.toString();  
+    }  
+	
 	private static List<Face> faceDetect(String picUrl) {  
         List<Face> faceList = new ArrayList<Face>();  
         try {  
