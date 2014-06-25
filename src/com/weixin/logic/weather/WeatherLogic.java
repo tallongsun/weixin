@@ -45,7 +45,7 @@ public class WeatherLogic {
 	}
 
 	private static String weather(String code){
-		String jsonStr = HttpUtil.doGet("http://m.weather.com.cn/data/"+code+".html", "UTF-8");
+		String jsonStr = HttpUtil.doGet("http://m.weather.com.cn/atad/"+code+".html", "UTF-8");
 		return jsonStr;
 	}
 	
