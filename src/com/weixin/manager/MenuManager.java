@@ -76,7 +76,7 @@ public class MenuManager {
 		subBtnJso3 = new JSONObject();
 		subBtnJso3.put("name", "互动社区");
 		subBtnJso3.put("type", "view");
-		subBtnJso3.put("url", "http://www.baidu.com");
+		subBtnJso3.put("url", "http://wsq.qq.com/reflow/256311592");
 		subBtnAry3.add(subBtnJso3);
 		
 		JSONObject btnJso3 = new JSONObject();
