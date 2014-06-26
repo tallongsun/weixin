@@ -38,6 +38,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.weixin.auth.AccessToken;
 import com.weixin.auth.AuthToken;
 import com.weixin.auth.UserInfo;
+import com.weixin.manager.MenuManager;
 
 public class WeiXinUtil {
 	private static Logger log = LoggerFactory.getLogger(WeiXinUtil.class);  
@@ -614,7 +615,7 @@ public class WeiXinUtil {
 	public static void main(String[] args) throws Exception{
 		AccessToken token = getAccessToken("wxf62c8db6d6fc4cd0", "813e8db02fdfebbb3b15e808eef922b2");
 		if(token!=null){
-//			createMenu(MenuManager.getTestMenu(), token.getToken());
+			createMenu(MenuManager.getTestMenu(), token.getToken());
 			
 //			AccessToken ticket = createScene(token.getToken(),1800,10000);
 //			if(ticket!=null){

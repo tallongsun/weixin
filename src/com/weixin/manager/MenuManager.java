@@ -170,6 +170,12 @@ public class MenuManager {
 		subBtnJso3.put("url", "http://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf62c8db6d6fc4cd0&redirect_uri=http%3A%2F%2Fwww.itallong.com%2Fyouyou%2Foauth.jsp&response_type=code&scope=snsapi_base&state=wx#wechat_redirect");
 		subBtnAry3.add(subBtnJso3);
 		
+		subBtnJso3 = new JSONObject();
+		subBtnJso3.put("name", "jstest");
+		subBtnJso3.put("type", "view");
+		subBtnJso3.put("url", "http://www.itallong.com/youyou/index.jsp");
+		subBtnAry3.add(subBtnJso3);
+		
 		JSONObject btnJso3 = new JSONObject();
 		btnJso3.put("name", "更多体验");
 		btnJso3.put("sub_button",subBtnAry3);  
