@@ -21,6 +21,12 @@ public class EventReqMessage extends BaseReqMessage{
 	public void setEvent(Event event) {
 		this.event = event;
 	}
+
+
+	@Override
+	public String toString() {
+		return super.toString()+ "EventReqMessage [event=" + event.getType() + "]";
+	}
 	
 	
 }

@@ -1,4 +1,4 @@
-package com.weixin;
+package com.weixin.auth;
 
 /**
  * 微信通用接口凭证 
@@ -22,6 +22,10 @@ public class AccessToken {
 	}
 	public void setExpiresIn(int expiresIn) {
 		this.expiresIn = expiresIn;
+	}
+	@Override
+	public String toString() {
+		return "AccessToken [expiresIn=" + expiresIn + ", token=" + token + "]";
 	}  
     
     

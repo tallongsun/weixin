@@ -18,6 +18,11 @@ public class ImageReqMessage  extends BaseReqMessage{
 	public void setPicUrl(String picUrl) {
 		PicUrl = picUrl;
 	}
+
+	@Override
+	public String toString() {
+		return super.toString()+"ImageReqMessage [PicUrl=" + PicUrl + "]";
+	}
 	
 	
 }

@@ -47,6 +47,13 @@ public class LocationReqMessage extends BaseReqMessage{
 	public void setLabel(String label) {
 		Label = label;
 	}
+
+	@Override
+	public String toString() {
+		return super.toString()+"LocationReqMessage [Label=" + Label + ", Location_X="
+				+ Location_X + ", Location_Y=" + Location_Y + ", Scale="
+				+ Scale + "]";
+	}
 	
 	
 }

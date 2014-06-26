@@ -5,6 +5,7 @@ import java.io.File;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 
+import com.weixin.auth.TokenThread;
 import com.weixin.cache.CaoHelper;
 import com.weixin.db.DaoHelper;
 import com.weixin.logic.chat.ChatService;

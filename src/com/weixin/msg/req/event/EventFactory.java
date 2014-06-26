@@ -10,6 +10,15 @@ public class EventFactory {
 		}else if(type.equals("CLICK") || type.equals("VIEW")){
 			String key = requestMap.get("EventKey");
 			return new MenuEvent(type,key);
+		}else if(type.equals("SCAN")){//TODO:现在这种方式二维码的subscribe事件会被普通的吃掉
+			String key = requestMap.get("EventKey");
+			String ticket = requestMap.get("Ticket");
+			return new QrCodeEvent(type, key, ticket);
+		}else if(type.equals("LOCATION")){
+			String latitude = requestMap.get("Latitude");
+			String longitude = requestMap.get("Longitude");
+			String precision = requestMap.get("Precision");
+			return new LocationEvent(type, latitude, longitude, precision);
 		}
 		return null;
 		

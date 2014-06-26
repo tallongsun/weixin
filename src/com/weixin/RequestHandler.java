@@ -34,51 +34,53 @@ public class RequestHandler {
         String resStr = null;  
         try {  
             BaseReqMessage reqMsg = recognizeMsg(request);
-            log.debug("reqMsg:"+reqMsg.toString());
-            if(reqMsg!=null){
-                // 默认回复文本消息  
-            	BaseResMessage resMsg = new TextResMessage("请求处理异常，请稍候尝试！");  
-                
-                if (reqMsg.getMsgType().equals("text")) { // 文本消息  
-                	TextReqMessage textReqMsg = (TextReqMessage)reqMsg;
-                	String content = textReqMsg.getContent().trim();
-                	
-                	if(content.startsWith("歌曲")){
-                		resMsg = MusicLogic.process(content);
-                	}else if(content.startsWith("游戏")){
-                		resMsg = GameLogic.process(content);
-                	}else if(content.startsWith("附近")){
-                		resMsg = LocationLogic.process(content,reqMsg.getFromUserName());
-                	}else if(NumberUtil.verifyNumber(content)){
-                		resMsg = GameLogic.process(content,reqMsg.getFromUserName());
-                	}else{
-                		resMsg = ChatLogic.process(content,reqMsg.getFromUserName());
-                	}
-                } else if (reqMsg.getMsgType().equals("image")){ // 图片消息
-                	ImageReqMessage imageReqMsg = (ImageReqMessage)reqMsg;
-                	String picUrl = imageReqMsg.getPicUrl();
-                	resMsg = FaceLogic.process(picUrl);
-                } else if (reqMsg.getMsgType().equals("location")){ // 位置消息
-                	LocationReqMessage locReqMsg = (LocationReqMessage)reqMsg;
-                	resMsg = LocationLogic.process(locReqMsg);
-                } else if (reqMsg.getMsgType().equals("voice")){ // 语音消息
-                	VoiceReqMessage voiceReqMsg = (VoiceReqMessage)reqMsg;
-                	resMsg = WeatherLogic.process(voiceReqMsg);
-                } else if (reqMsg.getMsgType().equals("event")){ //事件
-                	EventReqMessage eventReqMsg = (EventReqMessage)reqMsg;
-                	Event event = eventReqMsg.getEvent();
-                	if(event!=null){
-                		resMsg = event.exec(eventReqMsg.getFromUserName());
-                	}
-                }
-                if(resMsg != null){
-                    resMsg.setToUserName(reqMsg.getFromUserName());  
-                    resMsg.setFromUserName(reqMsg.getToUserName());  
-                    resMsg.setCreateTime(new Date().getTime());  
-                    resStr = MessageUtil.messageToXml(resMsg); 
-                }
-                log.debug("resStr:"+resStr);
+            if(reqMsg==null){
+            	log.error("illegal reqeust!");
+            	return null;
             }
+            log.debug("reqMsg:"+reqMsg.toString());
+            // 默认回复文本消息  
+        	BaseResMessage resMsg = new TextResMessage("请求处理异常，请稍候尝试！");  
+            
+            if (reqMsg.getMsgType().equals("text")) { // 文本消息  
+            	TextReqMessage textReqMsg = (TextReqMessage)reqMsg;
+            	String content = textReqMsg.getContent().trim();
+            	
+            	if(content.startsWith("歌曲")){
+            		resMsg = MusicLogic.process(content);
+            	}else if(content.startsWith("游戏")){
+            		resMsg = GameLogic.process(content);
+            	}else if(content.startsWith("附近")){
+            		resMsg = LocationLogic.process(content,reqMsg.getFromUserName());
+            	}else if(NumberUtil.verifyNumber(content)){
+            		resMsg = GameLogic.process(content,reqMsg.getFromUserName());
+            	}else{
+            		resMsg = ChatLogic.process(content,reqMsg.getFromUserName());
+            	}
+            } else if (reqMsg.getMsgType().equals("image")){ // 图片消息
+            	ImageReqMessage imageReqMsg = (ImageReqMessage)reqMsg;
+            	String picUrl = imageReqMsg.getPicUrl();
+            	resMsg = FaceLogic.process(picUrl);
+            } else if (reqMsg.getMsgType().equals("location")){ // 位置消息
+            	LocationReqMessage locReqMsg = (LocationReqMessage)reqMsg;
+            	resMsg = LocationLogic.process(locReqMsg);
+            } else if (reqMsg.getMsgType().equals("voice")){ // 语音消息
+            	VoiceReqMessage voiceReqMsg = (VoiceReqMessage)reqMsg;
+            	resMsg = WeatherLogic.process(voiceReqMsg);
+            } else if (reqMsg.getMsgType().equals("event")){ //事件
+            	EventReqMessage eventReqMsg = (EventReqMessage)reqMsg;
+            	Event event = eventReqMsg.getEvent();
+            	if(event!=null){
+            		resMsg = event.exec(eventReqMsg.getFromUserName());
+            	}
+            }
+            if(resMsg != null){
+                resMsg.setToUserName(reqMsg.getFromUserName());  
+                resMsg.setFromUserName(reqMsg.getToUserName());  
+                resMsg.setCreateTime(new Date().getTime());  
+                resStr = MessageUtil.messageToXml(resMsg); 
+            }
+            log.debug("resStr:"+resStr);
             
         } catch (Exception e) {  
             e.printStackTrace();  
@@ -109,7 +111,8 @@ public class RequestHandler {
 		}else if("voice".equals(msgType)){
 			String mediaId = requestMap.get("MediaId");
 			String format = requestMap.get("Format");
-			return new VoiceReqMessage(msgType, toUserName, fromUserName, createTime, msgId, mediaId, format);
+			String recog = requestMap.get("Recognition");
+			return new VoiceReqMessage(msgType, toUserName, fromUserName, createTime, msgId, mediaId, format,recog);
 		}else if("event".equals(msgType)){
 			Event event = EventFactory.getEvent(requestMap);
 			if(event!=null){

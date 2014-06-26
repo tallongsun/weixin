@@ -1,4 +1,4 @@
-package com.weixin;
+package com.weixin.auth;
 
 import javax.servlet.ServletException;
 

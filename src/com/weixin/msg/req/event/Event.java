@@ -1,9 +1,14 @@
 package com.weixin.msg.req.event;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.weixin.msg.BaseResMessage;
 import com.weixin.msg.res.TextResMessage;
 
 public class Event {
+	protected Logger log = LoggerFactory.getLogger(Event.class);
+	
 	protected String type;
 	
 	public Event(String type){

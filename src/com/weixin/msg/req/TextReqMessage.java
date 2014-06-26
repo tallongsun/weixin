@@ -23,6 +23,12 @@ public class TextReqMessage extends BaseReqMessage{
     }
 
 
+	@Override
+	public String toString() {
+		return super.toString()+"TextReqMessage [Content=" + Content + "]";
+	}
 
+
+    
     
 }
