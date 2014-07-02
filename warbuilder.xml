@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="weixin" basedir="." default="buildwar">
 	
+	<target name="init">
+		<replaceregexp file="WebRoot/WEB-INF/config/cache.xml" match="127.0.0.1"
+			replace="ecache.gzyydf.0001.apse1.cache.amazonaws.com" byline="true"/>
+		<replaceregexp file="WebRoot/WEB-INF/config/database.xml" match="127.0.0.1"
+			replace="wordpress-db.cjdr5s24owqm.ap-southeast-1.rds.amazonaws.com" byline="true"/>
+		<replaceregexp file="WebRoot/WEB-INF/config/database.xml" match="root@mysql"
+			replace="rootpass" byline="true"/>
+	</target>
+	
 	<!--打包整个war-->
-	<target name="buildwar">
+	<target name="buildwar" depends="init">
 		<war basedir="WebRoot" destfile="youyou.war" webxml="WebRoot/WEB-INF/web.xml">
 			<exclude name="WEB-INF/**" />
 			<webinf dir="WebRoot/WEB-INF/" >
