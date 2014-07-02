@@ -1,0 +1,67 @@
+<html>
+<head>
+<meta name="description" content="HTML5 WebSocket Chat" />
+<meta name="keywords" content="HTML5,WebSocket,JavaScript" />
+<meta name="author" content="Andy Moncsek" />
+<meta charset="UTF-8" />
+<title>Jetty WebSocket: Chat</title>
+<script type="text/javascript" charset="utf-8" src="js/jquery-1.3.2.js"></script>
+<link type="text/css" rel="stylesheet" href="css/style.css" />
+<script type="text/javascript">
+	var ws = new WebSocket("ws://www.itallong.com/youyou/mychat/anything");
+
+
+	$(document).ready(
+			function() {
+			
+	
+				ws.onopen = function(event) {
+					console.log("yaaaay ! socket opened");
+				}
+				ws.onmessage = function(event) {
+					var $textarea = $('#messages');
+					$textarea.val($textarea.val() + event.data + "\n");
+					$textarea.animate({
+						scrollTop : $textarea.height()
+					}, 1000);
+				}
+				ws.onclose = function(event) {
+					console.log("websocket closed , Y U NO CHAT ? ");
+				}
+	
+			});
+
+	function sendMessage() {
+		var message = $('#username').val() + ":" + $('#message').val();
+		ws.send(message);
+		$('#message').val('');
+	}
+	
+
+</script>
+</head>
+<body>
+	<div id="chatbody">
+		<div id="menu">
+			<h1 id="headline">websocket chat</h1>
+			<div style="clear: both"></div>
+			<p class="username">
+				Username: <input id="username" value="anonymous" />			
+			</p>
+			<div style="clear: both"></div>
+		</div>
+
+		<div id="chatbox">
+			<textarea id="messages" rows="16" cols="48" readonly="readonly"></textarea>
+		</div>
+
+		<form name="message" action="">
+			<input name="usermsg" type="text" id="message" size="63"  /> 
+		</form>
+		Please do not use the return key for sending messages due some javascript issues ! Always press the submit button
+		<input
+				type="button" name="submitmsg" value="Send..."
+				onclick="sendMessage();" />
+	</div>
+</body>
+</html>

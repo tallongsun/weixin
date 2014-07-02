@@ -37,6 +37,15 @@
 		<url-pattern>/admin.do</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>WebSocketChatServlet</servlet-name>
+		<servlet-class>com.weixin.WebSocketChatServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>WebSocketChatServlet</servlet-name>
+		<url-pattern>/mychat/*</url-pattern>
+	</servlet-mapping>
+	
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
