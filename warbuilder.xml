@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="weixin" basedir="." default="buildwar">
+<project name="weixin" basedir="." default="restore">
 	
+	<!--AWS发布版配置-->
 	<target name="init">
 		<replaceregexp file="WebRoot/WEB-INF/config/cache.xml" match="127.0.0.1"
 			replace="ecache.gzyydf.0001.apse1.cache.amazonaws.com" byline="true"/>
@@ -27,6 +28,16 @@
 				<include name="config/*.xml" />
 			</webinf>
 		</war>
+	</target>
+	
+	<!--恢复本地测试版配置 -->
+	<target name="restore" depends="buildwar">
+		<replaceregexp file="WebRoot/WEB-INF/config/cache.xml" match="ecache.gzyydf.0001.apse1.cache.amazonaws.com"
+			replace="127.0.0.1" byline="true"/>
+		<replaceregexp file="WebRoot/WEB-INF/config/database.xml" match="wordpress-db.cjdr5s24owqm.ap-southeast-1.rds.amazonaws.com"
+			replace="127.0.0.1" byline="true"/>
+		<replaceregexp file="WebRoot/WEB-INF/config/database.xml" match="rootpass"
+			replace="root@mysql" byline="true"/>
 	</target>
 	
 </project>
